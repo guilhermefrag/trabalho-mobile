@@ -1,70 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/blue"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="70dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_width="230dp"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Logo"
-            android:textColor="@color/black"
-            android:textSize="50dp" />
+            android:text="LOGIN"
+            android:textAlignment="textEnd"
+            android:textColor="@color/orange"
+            android:textSize="40dp"
+            tools:ignore="RtlCompat" />
 
-        <EditText
-            android:id="@+id/editEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:hint="E-mail de acesso"
-            android:minHeight="48dp" />
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/icone_laranja" />
 
-        <EditText
-            android:id="@+id/editSenha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:hint="Senha de acesso"
-            android:inputType="textPassword"
-            android:minHeight="48dp" />
-
-        <CheckBox
-            android:id="@+id/checkLembrarSenha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lembrar senha"
-            android:layout_marginBottom="30dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="100">
-
-            <Button
-                android:id="@+id/btnEntrar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="50"
-                android:text="Entrar" />
-
-            <Button
-                android:id="@+id/btnCadastrar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="50"
-                android:text="Cadastrar" />
-        </LinearLayout>
     </LinearLayout>
 
-</ScrollView>
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="E-mail de acesso"
+        android:inputType="textEmailAddress"
+        android:backgroundTint="@color/orange"
+        android:textColor="@color/orange"
+        android:textColorHint="@color/orange"
+        android:layout_margin="20dp"/>
+
+    <EditText
+        android:id="@+id/editSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Senha de Acesso"
+        android:backgroundTint="@color/orange"
+        android:textColor="@color/orange"
+        android:textColorHint="@color/orange"
+        android:layout_margin="20dp"/>
+
+    <CheckBox
+        android:id="@+id/checkLembrarSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/orange"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold"
+        android:text="Lembrar senha" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <Button
+            android:id="@+id/btnCadastrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="50"
+            android:backgroundTint="@color/orange"
+            android:text="CADASTRAR" />
+
+        <Button
+            android:id="@+id/btnEntrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="50"
+            android:backgroundTint="@color/orange"
+            android:text="ENTRAR" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="130dp"
+        android:src="@drawable/logo_laranja" />
+
+
+</LinearLayout>
+
