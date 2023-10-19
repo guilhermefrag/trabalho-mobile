@@ -21,9 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".CadastroActivity"/>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".CadastroActivity" />
     </application>
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>
