@@ -1,4 +1,4 @@
-package com.example.bancomobile.database.model;
+package com.example.myapplication.database.model;
 
 public class ViagemModel {
     public static final String TABELA_NOME = "viagem";
