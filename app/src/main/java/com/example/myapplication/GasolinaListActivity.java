@@ -1,12 +1,18 @@
 package com.example.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 import java.util.ArrayList;
 
 public class GasolinaListActivity extends Activity {
+
+    private Button btnSair;
+
     public static String converteBooleanParaString(boolean valor) {
         if (valor) {
             return "Sim";
@@ -41,6 +47,14 @@ public class GasolinaListActivity extends Activity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dataList);
         listView.setAdapter(adapter);
+
+        btnSair = findViewById(R.id.btnSair);
+        btnSair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(GasolinaListActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
-

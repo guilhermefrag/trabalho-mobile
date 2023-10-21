@@ -24,7 +24,13 @@ public class MainActivity extends AppCompatActivity {
         btnControleGastosGasolina = findViewById(R.id.btnControleGastosGasolina);
         btnSair = findViewById(R.id.btnSair);
 
-
+        btnCadastrarViagem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CadastroViagemActivity.class);
+                startActivity(intent);
+            }
+        });
         btnControleGastosGasolina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

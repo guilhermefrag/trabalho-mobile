@@ -8,6 +8,17 @@
 
     android:background="@android:color/background_light">
 
+    <Button
+        android:id="@+id/btnSair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="20dp"
+        android:backgroundTint="@color/orange"
+        android:text="Voltar" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

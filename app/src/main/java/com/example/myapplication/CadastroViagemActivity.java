@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,7 @@ import com.example.myapplication.database.model.ViagemModel;
 
 public class CadastroViagemActivity extends AppCompatActivity {
     private EditText editDescricao, editTotalKm, editKmPorLitro, editCustoMedioLitro, editTotalVeiculos, editAdicionarGasolina;
-    private Button btnSalvar;
+    private Button btnSalvar, btnSair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class CadastroViagemActivity extends AppCompatActivity {
         editTotalVeiculos = findViewById(R.id.editTotalVeiculos);
         editAdicionarGasolina = findViewById(R.id.editAdicionarGasolina);
         btnSalvar = findViewById(R.id.btnSalvar);
+        btnSair = findViewById(R.id.btnSair);
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,8 +46,15 @@ public class CadastroViagemActivity extends AppCompatActivity {
                 viagem.setTotalVeiculos(totalVeiculos);
                 viagem.setAdicionarGasolina(adicionarGasolina);
 
-                //TEM QUE SALVAR NO BANCO
                 finish();
+            }
+        });
+
+        btnSair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CadastroViagemActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
