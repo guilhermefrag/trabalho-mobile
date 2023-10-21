@@ -3,54 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp"
 
-    <LinearLayout
+    android:background="@android:color/background_light">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lista de Gasolina"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"/>
+
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:id="@+id/codigoProduto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Código: 455182"/>
-
-        <TextView
-            android:id="@+id/nomeProduto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nome: Alcatra"/>
-
-        <TextView
-            android:id="@+id/barrasProduto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Código de Barras: 123456789"/>
-
-        <TextView
-            android:id="@+id/estoqueProduto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Estoque: 1"/>
-
-        <LinearLayout
-            android:id="@+id/btnEstoque"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Adicionar Estoque"
-                android:textColor="@color/white"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
+        android:layout_marginTop="8dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1dp"
+        android:background="@android:color/white"
+        />
 </LinearLayout>

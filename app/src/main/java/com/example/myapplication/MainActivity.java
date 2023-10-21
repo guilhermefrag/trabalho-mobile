@@ -10,7 +10,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btnSair;
+    private Button btnSair, btnControleGastosGasolina, btnCadastrarViagem;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -20,7 +20,18 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("MinhasPreferencias", Context.MODE_PRIVATE);
 
+        btnCadastrarViagem = findViewById(R.id.btnCadastrarViagem);
+        btnControleGastosGasolina = findViewById(R.id.btnControleGastosGasolina);
         btnSair = findViewById(R.id.btnSair);
+
+
+        btnControleGastosGasolina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GasolinaListActivity.class);
+                startActivity(intent);
+            }
+        });
         btnSair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
