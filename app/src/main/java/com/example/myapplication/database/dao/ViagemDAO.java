@@ -4,9 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.bancomobile.database.helper.DBOpenHelper;
+import com.example.myapplication.database.helper.DBOpenHelper;
 import com.example.myapplication.database.model.ViagemModel;
-import com.example.bancomobile.database.dao.AbstrataDAO;
+import com.example.myapplication.database.dao.AbstrataDAO;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

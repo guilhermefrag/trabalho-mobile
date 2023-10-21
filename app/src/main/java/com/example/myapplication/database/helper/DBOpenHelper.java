@@ -1,8 +1,10 @@
-package com.example.bancomobile.database.helper;
+package com.example.myapplication.database.helper;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.myapplication.database.model.UsuarioModel;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NOME = "banco.db";
@@ -14,7 +16,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL(UsuarioModel.CREATE_TABLE);
     }
 
     @Override

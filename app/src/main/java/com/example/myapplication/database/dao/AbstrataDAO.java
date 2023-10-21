@@ -1,8 +1,8 @@
-package com.example.bancomobile.database.dao;
+package com.example.myapplication.database.dao;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.bancomobile.database.helper.DBOpenHelper;
+import com.example.myapplication.database.helper.DBOpenHelper;
 
 import java.sql.SQLException;
 

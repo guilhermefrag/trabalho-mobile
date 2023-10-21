@@ -33,6 +33,14 @@ public class UsuarioModel {
 
     public static final String DROP_TABLE = "drop table if exists " + TABELA_NOME + ";";
 
+    public void setId (long id){
+        this.id = id;
+    }
+
+    public long getId (){
+        return id;
+    }
+
     public String getNomeCompleto() {
         return nomeCompleto;
     }
