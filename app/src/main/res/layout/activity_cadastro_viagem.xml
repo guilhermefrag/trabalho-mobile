@@ -30,92 +30,250 @@
                 android:text="Voltar" />
 
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CADASTRO DE VIAGEM"
+            android:textAlignment="center"
+            android:textColor="@color/orange"
+            android:textSize="30dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="270dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="CADASTRO"
-                android:textAlignment="textEnd"
+            <EditText
+                android:id="@+id/editDescricao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Descrição da viagem"
+                android:inputType="text"
+                android:backgroundTint="@color/orange"
                 android:textColor="@color/orange"
-                android:textSize="40dp"/>
-
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/icone_laranja" />
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/editDescricao"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Descrição da viagem"
-            android:inputType="text"
-            android:backgroundTint="@color/orange"
-            android:textColor="@color/orange"
-            android:textColorHint="@color/orange"
-            android:layout_margin="20dp"/>
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTotalKm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Total de Km"
-            android:inputType="numberDecimal"
-            android:backgroundTint="@color/orange"
-            android:textColor="@color/orange"
-            android:textColorHint="@color/orange"
-            android:layout_margin="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GASOLINA"
+                android:textAlignment="center"
+                android:textColor="@color/orange"
+                android:paddingTop="10dp"
+                android:textSize="30dp"/>
 
-        <EditText
-            android:id="@+id/editKmPorLitro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Km por litro"
-            android:inputType="numberDecimal"
-            android:backgroundTint="@color/orange"
-            android:textColor="@color/orange"
-            android:textColorHint="@color/orange"
-            android:layout_margin="20dp"/>
+            <EditText
+                android:id="@+id/editTotalKm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total de Km"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
 
-        <EditText
-            android:id="@+id/editCustoMedioLitro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Custo médio do litro"
-            android:inputType="numberDecimal"
-            android:backgroundTint="@color/orange"
-            android:textColor="@color/orange"
-            android:textColorHint="@color/orange"
-            android:layout_margin="20dp"/>
+            <EditText
+                android:id="@+id/editKmPorLitro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Km por litro"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
 
-        <EditText
-            android:id="@+id/editTotalVeiculos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Total de veículos"
-            android:inputType="number"
-            android:backgroundTint="@color/orange"
-            android:textColor="@color/orange"
-            android:textColorHint="@color/orange"
-            android:layout_margin="20dp"/>
+            <EditText
+                android:id="@+id/editCustoMedioLitro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Custo médio do litro"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
 
-        <EditText
-            android:id="@+id/editAdicionarGasolina"
+            <EditText
+                android:id="@+id/editTotalVeiculos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total de veículos"
+                android:inputType="number"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
+
+            <EditText
+                android:id="@+id/editAdicionarGasolina"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Adicionar gasolina"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Adicionar gasolina"
-            android:inputType="numberDecimal"
-            android:backgroundTint="@color/orange"
-            android:textColor="@color/orange"
-            android:textColorHint="@color/orange"
-            android:layout_margin="20dp"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TARIFA AÉREA"
+                android:textAlignment="center"
+                android:textColor="@color/orange"
+                android:paddingTop="10dp"
+                android:textSize="30dp"/>
+
+            <EditText
+                android:id="@+id/editCustoEstimadoPessoa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Custo estimado por pessoa"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
+
+            <EditText
+                android:id="@+id/editAluguelVeiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Aluguel de veículo"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
+
+            <EditText
+                android:id="@+id/editAdicionarTarifa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Adicionar tarifa aérea"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="REFEIÇÕES"
+                android:textAlignment="center"
+                android:textColor="@color/orange"
+                android:paddingTop="10dp"
+                android:textSize="30dp"/>
+
+            <EditText
+                android:id="@+id/editCustoRefeicao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Custo estimado por refeição"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
+
+            <EditText
+                android:id="@+id/editRefeicoesDia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Refeições por dia"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
+
+            <EditText
+                android:id="@+id/editAdicionarRefeicao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Adicionar refeição"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="HOSPEDAGEM"
+                android:textAlignment="center"
+                android:textColor="@color/orange"
+                android:paddingTop="10dp"
+                android:textSize="30dp"/>
+
+            <EditText
+                android:id="@+id/editCustoPorNoite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Custo médio (por noite)"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
+
+            <EditText
+                android:id="@+id/editTotalNoites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total de noites"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
+
+            <EditText
+                android:id="@+id/editTotalQuartos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Total de quartos"
+                android:inputType="numberDecimal"
+                android:backgroundTint="@color/orange"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange"
+                android:layout_margin="20dp"/>
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/btnSalvar"
@@ -126,5 +284,6 @@
             android:layout_weight="50"
             android:backgroundTint="@color/orange"
             android:text="REGISTRAR" />
+
     </LinearLayout>
 </ScrollView>
