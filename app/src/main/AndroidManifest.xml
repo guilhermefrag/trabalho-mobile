@@ -26,6 +26,7 @@
         <activity android:name=".CadastroActivity" />
         <activity android:name=".CadastroViagemActivity" />
         <activity android:name=".GasolinaListActivity" />
+        <activity android:name=".MinhasViagens" />
 
     </application>
 

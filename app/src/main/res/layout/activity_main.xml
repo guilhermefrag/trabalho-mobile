@@ -41,12 +41,12 @@
                 android:textColor="@android:color/white" />
 
             <Button
-                android:id="@+id/btnControleGastosGasolina"
+                android:id="@+id/btnMinhasViagens"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:backgroundTint="@color/orange"
-                android:text="Controle de Gastos Gasolina"
+                android:text="Minhas Viagens"
                 android:textColor="@android:color/white" />
 
             <Button
