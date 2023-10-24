@@ -8,8 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_gravity="center_vertical"
+        android:orientation="vertical"
         android:padding="10dp">
 
         <LinearLayout
@@ -19,8 +19,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:src="@drawable/logo_laranja">
-            </ImageView>
+                android:src="@drawable/logo_laranja"></ImageView>
 
         </LinearLayout>
 
@@ -30,33 +29,6 @@
             android:layout_marginTop="100dp"
             android:gravity="center"
             android:orientation="vertical">
-
-            <Button
-                android:id="@+id/btnCadastrarViagem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:backgroundTint="@color/orange"
-                android:text="Cadastrar Viagem"
-                android:textColor="@android:color/white" />
-
-            <Button
-                android:id="@+id/btnMinhasViagens"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:backgroundTint="@color/orange"
-                android:text="Minhas Viagens"
-                android:textColor="@android:color/white" />
-
-            <Button
-                android:id="@+id/btnVisualizarbanco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:backgroundTint="@color/orange"
-                android:text="Ver banco"
-                android:textColor="@android:color/white" />
 
             <Button
                 android:id="@+id/btnSair"

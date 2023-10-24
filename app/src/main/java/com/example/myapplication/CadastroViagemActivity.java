@@ -8,11 +8,17 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.database.dao.ViagemDAO;
 import com.example.myapplication.database.model.ViagemModel;
 
 public class CadastroViagemActivity extends AppCompatActivity {
+
     private EditText editDescricao, editTotalKm, editKmPorLitro, editCustoMedioLitro, editTotalVeiculos, editAdicionarGasolina;
     private Button btnSalvar, btnVoltar;
+    private EditText editCustoEstimadoPessoa,
+            editAluguelVeiculo,
+            editCustoRefeicao,
+            editRefeicoesDia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,11 @@ public class CadastroViagemActivity extends AppCompatActivity {
         editAdicionarGasolina = findViewById(R.id.editAdicionarGasolina);
         btnSalvar = findViewById(R.id.btnSalvar);
         btnVoltar = findViewById(R.id.btnVoltar);
+        editCustoEstimadoPessoa = findViewById(R.id.editCustoEstimadoPessoa);
+        editAluguelVeiculo = findViewById(R.id.editAluguelVeiculo);
+        editCustoRefeicao = findViewById(R.id.editCustoRefeicao);
+        editRefeicoesDia = findViewById(R.id.editRefeicoesDia);
+
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,17 +47,40 @@ public class CadastroViagemActivity extends AppCompatActivity {
                 double kmPorLitro = Double.parseDouble(editKmPorLitro.getText().toString());
                 double custoMedioLitro = Double.parseDouble(editCustoMedioLitro.getText().toString());
                 int totalVeiculos = Integer.parseInt(editTotalVeiculos.getText().toString());
-                int adicionarGasolina = Integer.parseInt(editAdicionarGasolina.getText().toString());
+
+                //adicionar os novos campos
+                double custoEstimadoPessoa = Double.parseDouble(editCustoEstimadoPessoa.getText().toString());
+                double aluguelVeiculo = Double.parseDouble(editAluguelVeiculo.getText().toString());
+                double custoRefeicao = Double.parseDouble(editCustoRefeicao.getText().toString());
+                int refeicoesDia = Integer.parseInt(editRefeicoesDia.getText().toString());
+
 
                 ViagemModel viagem = new ViagemModel();
+
                 viagem.setDescricao(descricao);
                 viagem.setTotalKm(totalKm);
                 viagem.setKmPorLitro(kmPorLitro);
                 viagem.setCustoMedioLitro(custoMedioLitro);
                 viagem.setTotalVeiculos(totalVeiculos);
-                viagem.setAdicionarGasolina(adicionarGasolina);
+                viagem.setAdicionarGasolina(1);
+                viagem.setCustoTarifaPessoa(custoEstimadoPessoa);
+                viagem.setAluguelVeiculo(aluguelVeiculo);
+                viagem.setCustoRefeicao(custoRefeicao);
+                viagem.setRefeicoesDia(refeicoesDia);
 
-                finish();
+                //pegar da view depois
+                viagem.setAdicionarGasolina(1);
+                viagem.setAdicionarHospedagem(1);
+                viagem.setAdicionarRefeicoes(1);
+                viagem.setAdicionarTarifaAerea(1);
+
+                ViagemDAO viagemDAO = new ViagemDAO(CadastroViagemActivity.this);
+
+                try {
+                    viagemDAO.Insert(viagem);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 

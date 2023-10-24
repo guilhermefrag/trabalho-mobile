@@ -39,7 +39,7 @@ public class UsuarioDAO extends AbstrataDAO {
             values.put(UsuarioModel.COLUNA_IDADE, model.getIdade());
             values.put(UsuarioModel.COLUNA_SENHA, model.getSenha());
 
-            rowAffect = db.insert(ViagemModel.TABELA_NOME, null, values);
+            rowAffect = db.insert(UsuarioModel.TABELA_NOME, null, values);
         } finally {
             Close();
         }
