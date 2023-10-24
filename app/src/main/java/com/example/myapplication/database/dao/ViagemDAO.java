@@ -108,7 +108,7 @@ public class ViagemDAO extends AbstrataDAO {
         Close();
     }
 
-    public  void DeleteAll() throws SQLException {
+    public void DeleteAll() throws SQLException {
         Open();
         db.delete(ViagemModel.TABELA_NOME, null, null);
         Close();
@@ -139,5 +139,9 @@ public class ViagemDAO extends AbstrataDAO {
         lo_structure.setTotalHospedagem(ao_cursor.getDouble(19));
 
         return lo_structure;
+    }
+
+    public void AbrirBanco() throws SQLException {
+        Open();
     }
 }

@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btnSair, btnMinhasViagens, btnCadastrarViagem;
+    private Button btnSair, btnMinhasViagens, btnCadastrarViagem,
+            btnVisualizarbanco;
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         btnCadastrarViagem = findViewById(R.id.btnCadastrarViagem);
         btnMinhasViagens = findViewById(R.id.btnMinhasViagens);
         btnSair = findViewById(R.id.btnSair);
+        btnVisualizarbanco = findViewById(R.id.btnVisualizarbanco);
 
         btnCadastrarViagem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +49,15 @@ public class MainActivity extends AppCompatActivity {
                 editor.apply();
 
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        btnVisualizarbanco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BancoActivity.class);
                 startActivity(intent);
             }
         });

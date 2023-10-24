@@ -27,10 +27,6 @@ public class UsuarioModel {
                     COLUNA_IDADE + " INTEGER, " +
                     COLUNA_SENHA + " TEXT NOT NULL);";
 
-
-
-
-
     public static final String DROP_TABLE = "drop table if exists " + TABELA_NOME + ";";
 
     public void setId (long id){
