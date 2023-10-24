@@ -19,7 +19,7 @@
             android:weightSum="100">
 
             <Button
-                android:id="@+id/btnSair"
+                android:id="@+id/btnVoltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="17dp"

@@ -12,7 +12,7 @@ import com.example.myapplication.database.model.ViagemModel;
 
 public class CadastroViagemActivity extends AppCompatActivity {
     private EditText editDescricao, editTotalKm, editKmPorLitro, editCustoMedioLitro, editTotalVeiculos, editAdicionarGasolina;
-    private Button btnSalvar, btnSair;
+    private Button btnSalvar, btnVoltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class CadastroViagemActivity extends AppCompatActivity {
         editTotalVeiculos = findViewById(R.id.editTotalVeiculos);
         editAdicionarGasolina = findViewById(R.id.editAdicionarGasolina);
         btnSalvar = findViewById(R.id.btnSalvar);
-        btnSair = findViewById(R.id.btnSair);
+        btnVoltar = findViewById(R.id.btnVoltar);
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +50,7 @@ public class CadastroViagemActivity extends AppCompatActivity {
             }
         });
 
-        btnSair.setOnClickListener(new View.OnClickListener() {
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CadastroViagemActivity.this, MainActivity.class);
