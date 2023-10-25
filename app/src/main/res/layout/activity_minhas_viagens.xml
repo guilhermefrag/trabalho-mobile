@@ -34,7 +34,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:paddingTop="10dp"
                 android:text="Minhas viagens"
                 android:textColor="@color/orange"
                 android:textSize="26dp" />

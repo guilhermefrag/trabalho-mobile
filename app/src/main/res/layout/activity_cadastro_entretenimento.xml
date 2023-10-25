@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/blue">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnVoltar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0dp"
+                android:backgroundTint="@color/orange"
+                android:text="Voltar"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CADASTRO DE ENTRETENIMENTO"
+        android:textAlignment="center"
+        android:textColor="@color/orange"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:textStyle="bold"
+        android:textSize="24sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editDescricaoEntretenimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descrição"
+            android:inputType="text"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/orange"
+            android:textColorHint="@color/orange"
+            android:layout_margin="20dp"/>
+
+        <EditText
+            android:id="@+id/editValorEntretenimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Total de noites"
+            android:inputType="numberDecimal"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/orange"
+            android:textColorHint="@color/orange"
+            android:layout_margin="20dp"/>
+
+        <Button
+            android:id="@+id/btnSalvar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="50"
+            android:backgroundTint="@color/orange"
+            android:text="SALVAR" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

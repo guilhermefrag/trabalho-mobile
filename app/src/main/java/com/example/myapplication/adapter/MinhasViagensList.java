@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.myapplication.CadastroViagemActivity;
+import com.example.myapplication.ListaEntretenimento;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 
@@ -71,7 +72,7 @@ public class MinhasViagensList extends BaseAdapter {
             button2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, MainActivity.class);
+                    Intent intent = new Intent(context, ListaEntretenimento.class);
                     context.startActivity(intent);
                 }
             });
