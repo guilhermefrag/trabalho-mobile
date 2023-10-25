@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,14 +7,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.myapplication.CadastroViagemActivity;
+import com.example.myapplication.MainActivity;
+import com.example.myapplication.R;
 
 import java.util.List;
 
 public class MinhasViagensList extends BaseAdapter {
     private List<String> itemList;
     private Context context;
-    private Button button1, button2;
+    private Button button2;
+    private ImageButton button1;
     private TextView textView;
 
     public MinhasViagensList(Context context, List<String> itemList) {

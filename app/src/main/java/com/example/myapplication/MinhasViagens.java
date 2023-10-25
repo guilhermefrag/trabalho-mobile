@@ -9,6 +9,8 @@ import android.widget.ListView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.adapter.MinhasViagensList;
+
 import java.util.ArrayList;
 import java.util.List;
 
