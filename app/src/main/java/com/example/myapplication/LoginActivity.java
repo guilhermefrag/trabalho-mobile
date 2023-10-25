@@ -13,6 +13,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.database.dao.UsuarioDAO;
+import com.example.myapplication.database.model.UsuarioModel;
+
+import java.sql.SQLException;
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
     private EditText editEmail;
     private EditText editSenha;
@@ -58,18 +64,29 @@ public class LoginActivity extends AppCompatActivity {
                 String email = editEmail.getText().toString();
                 String senha = editSenha.getText().toString();
 
-                if (email.equals("admin") && senha.equals("admin")) {
-                    if (checkLembrarSenha.isChecked()) {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putBoolean("lembrar_senha", true);
-                        editor.apply();
-                    }
+                UsuarioDAO usuarioDAO = new UsuarioDAO(LoginActivity.this);
 
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(LoginActivity.this, "Usuário ou senha inválidos", Toast.LENGTH_LONG).show();
+                try {
+
+                    List<UsuarioModel> usuario = usuarioDAO.Login(email, senha);
+                    if (!usuario.isEmpty()) {
+                        Toast.makeText(LoginActivity.this, usuario.toString(), Toast.LENGTH_LONG).show();
+                        if (checkLembrarSenha.isChecked()) {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putBoolean("lembrar_senha", true);
+                            editor.apply();
+                        }
+
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Usuário ou senha inválidos", Toast.LENGTH_LONG).show();
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
                 }
+
+
             }
         });
 
