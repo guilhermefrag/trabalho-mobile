@@ -42,7 +42,6 @@ public class CadastroViagemActivity extends AppCompatActivity {
         editCustoRefeicao = findViewById(R.id.editCustoRefeicao);
         editRefeicoesDia = findViewById(R.id.editRefeicoesDia);
 
-
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,8 +55,6 @@ public class CadastroViagemActivity extends AppCompatActivity {
                 double custoEstimadoPessoa = Double.parseDouble(editCustoEstimadoPessoa.getText().toString());
                 double aluguelVeiculo = Double.parseDouble(editAluguelVeiculo.getText().toString());
                 double custoRefeicao = Double.parseDouble(editCustoRefeicao.getText().toString());
-                int refeicoesDia = Integer.parseInt(editRefeicoesDia.getText().toString());
-
 
                 ViagemModel viagem = new ViagemModel();
 
@@ -70,7 +67,7 @@ public class CadastroViagemActivity extends AppCompatActivity {
                 viagem.setCustoTarifaPessoa(custoEstimadoPessoa);
                 viagem.setAluguelVeiculo(aluguelVeiculo);
                 viagem.setCustoRefeicao(custoRefeicao);
-                viagem.setRefeicoesDia(refeicoesDia);
+                viagem.setRefeicoesDia(1);
 
                 //pegar da view depois
                 viagem.setAdicionarGasolina(1);

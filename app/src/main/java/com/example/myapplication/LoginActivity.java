@@ -13,6 +13,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.database.dao.UsuarioDAO;
+import com.example.myapplication.database.model.UsuarioModel;
+
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
     private EditText editEmail;
     private EditText editSenha;
@@ -37,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
         boolean lembrarSenha = sharedPreferences.getBoolean("lembrar_senha", false);
 
-        if (lembrarSenha){
+        if (lembrarSenha) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             return;
@@ -58,18 +63,32 @@ public class LoginActivity extends AppCompatActivity {
                 String email = editEmail.getText().toString();
                 String senha = editSenha.getText().toString();
 
-                if (email.equals("admin") && senha.equals("admin")) {
-                    if (checkLembrarSenha.isChecked()) {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putBoolean("lembrar_senha", true);
-                        editor.apply();
+                UsuarioDAO dao = new UsuarioDAO(LoginActivity.this);
+
+                try {
+                    List<UsuarioModel> usuarioModels = dao.GetByEmail(email);
+
+                    if (usuarioModels.size() == 0) {
+                        Toast.makeText(LoginActivity.this, "Usuário não encontrado", Toast.LENGTH_LONG).show();
+                        return;
                     }
 
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(LoginActivity.this, "Usuário ou senha inválidos", Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                 }
+
+//                if (email.equals("admin") && senha.equals("admin")) {
+//                    if (checkLembrarSenha.isChecked()) {
+//                        SharedPreferences.Editor editor = sharedPreferences.edit();
+//                        editor.putBoolean("lembrar_senha", true);
+//                        editor.apply();
+//                    }
+//
+//                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                    startActivity(intent);
+//                } else {
+//                    Toast.makeText(LoginActivity.this, "Usuário ou senha inválidos", Toast.LENGTH_LONG).show();
+//                }
             }
         });
 
