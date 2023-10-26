@@ -17,6 +17,7 @@ import com.example.myapplication.database.dao.UsuarioDAO;
 import com.example.myapplication.database.model.UsuarioModel;
 
 import java.sql.SQLException;
+
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
@@ -43,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
         boolean lembrarSenha = sharedPreferences.getBoolean("lembrar_senha", false);
 
-        if (lembrarSenha){
+        if (lembrarSenha) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             return;
@@ -85,9 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                }
-
-
+                }            
             }
         });
 

@@ -66,12 +66,13 @@ public class UsuarioDAO extends AbstrataDAO {
         return lista;
     }
 
-    public List<UsuarioModel> GetByEmail(String email) throws SQLException {
+    public List<UsuarioModel> GetByEmail(final String email) throws SQLException {
         List<UsuarioModel> lista = new ArrayList<>();
 
         try {
             Open();
-            Cursor cursor = db.query(UsuarioModel.TABELA_NOME, colunas, UsuarioModel.COLUNA_EMAIL + " = ?", new String[]{"" + email}, null, null, null);
+            Cursor cursor = db.query(UsuarioModel.TABELA_NOME, colunas, UsuarioModel.COLUNA_EMAIL + " = ?", new String[]{email}, null, null, null);
+            cursor.moveToFirst();
 
             while (!cursor.isAfterLast()) {
                 lista.add(CursorToStructure(cursor));
