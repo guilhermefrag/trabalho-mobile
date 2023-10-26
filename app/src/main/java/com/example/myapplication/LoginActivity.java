@@ -70,9 +70,10 @@ public class LoginActivity extends AppCompatActivity {
 
                     List<UsuarioModel> usuario = usuarioDAO.Login(email, senha);
                     if (!usuario.isEmpty()) {
-                        Toast.makeText(LoginActivity.this, usuario.toString(), Toast.LENGTH_LONG).show();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putInt("id_usuario", (int) usuario.get(0).getId());
+                        editor.apply();
                         if (checkLembrarSenha.isChecked()) {
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putBoolean("lembrar_senha", true);
                             editor.apply();
                         }

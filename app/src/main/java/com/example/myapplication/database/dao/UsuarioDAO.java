@@ -89,11 +89,13 @@ public class UsuarioDAO extends AbstrataDAO {
 
         try {
             Open();
-            Cursor cursor = db.query(UsuarioModel.TABELA_NOME, colunas, UsuarioModel.COLUNA_EMAIL + " = ? AND " + UsuarioModel.COLUNA_SENHA + " = ?", new String[]{"" + email, "" + senha}, null, null, null);
+            String selection = UsuarioModel.COLUNA_EMAIL + " = ? AND " + UsuarioModel.COLUNA_SENHA + " = ?";
+            String[] selectionArgs = {email, senha};
 
-            while (!cursor.isAfterLast()) {
+            Cursor cursor = db.query(UsuarioModel.TABELA_NOME, colunas, selection, selectionArgs, null, null, null);
+
+            while (cursor.moveToNext()) {
                 lista.add(CursorToStructure(cursor));
-                cursor.moveToNext();
             }
         } finally {
             Close();
