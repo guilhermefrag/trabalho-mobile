@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -75,8 +76,11 @@ public class CadastroViagemActivity extends AppCompatActivity {
 
                 try {
                     viagemDAO.Insert(viagem);
+                    Intent intent = new Intent(CadastroViagemActivity.this, MainActivity.class);
+                    Toast.makeText(CadastroViagemActivity.this, "Cadastro de Viagem realizado com sucesso", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
                 }catch (Exception e) {
-                    e.printStackTrace();
+                    Toast.makeText(CadastroViagemActivity.this, "" + e.toString(), Toast.LENGTH_LONG).show();
                 }
             }
         });
