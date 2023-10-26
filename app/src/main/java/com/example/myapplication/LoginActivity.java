@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
-                }            
+                }
             }
         });
 
