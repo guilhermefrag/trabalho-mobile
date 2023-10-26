@@ -85,6 +85,26 @@ public class UsuarioDAO extends AbstrataDAO {
         return lista;
     }
 
+    public List<UsuarioModel> Login(String email, String senha) throws SQLException {
+        List<UsuarioModel> lista = new ArrayList<>();
+
+        try {
+            Open();
+            String selection = UsuarioModel.COLUNA_EMAIL + " = ? AND " + UsuarioModel.COLUNA_SENHA + " = ?";
+            String[] selectionArgs = {email, senha};
+
+            Cursor cursor = db.query(UsuarioModel.TABELA_NOME, colunas, selection, selectionArgs, null, null, null);
+
+            while (cursor.moveToNext()) {
+                lista.add(CursorToStructure(cursor));
+            }
+        } finally {
+            Close();
+        }
+
+        return lista;
+    }
+
     public final UsuarioModel CursorToStructure(Cursor cursor) {
         UsuarioModel model = new UsuarioModel();
         model.setId(cursor.getLong(0));

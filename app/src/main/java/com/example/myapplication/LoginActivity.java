@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.database.dao.UsuarioDAO;
 import com.example.myapplication.database.model.UsuarioModel;
 
+import java.sql.SQLException;
+
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
@@ -63,32 +65,28 @@ public class LoginActivity extends AppCompatActivity {
                 String email = editEmail.getText().toString();
                 String senha = editSenha.getText().toString();
 
-                UsuarioDAO dao = new UsuarioDAO(LoginActivity.this);
+                UsuarioDAO usuarioDAO = new UsuarioDAO(LoginActivity.this);
 
                 try {
-                    List<UsuarioModel> usuarioModels = dao.GetByEmail(email);
 
-                    if (usuarioModels.size() == 0) {
-                        Toast.makeText(LoginActivity.this, "Usuário não encontrado", Toast.LENGTH_LONG).show();
-                        return;
+                    List<UsuarioModel> usuario = usuarioDAO.Login(email, senha);
+                    if (!usuario.isEmpty()) {
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putInt("id_usuario", (int) usuario.get(0).getId());
+                        editor.apply();
+                        if (checkLembrarSenha.isChecked()) {
+                            editor.putBoolean("lembrar_senha", true);
+                            editor.apply();
+                        }
+
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Usuário ou senha inválidos", Toast.LENGTH_LONG).show();
                     }
-
-                } catch (Exception e) {
-                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-
-//                if (email.equals("admin") && senha.equals("admin")) {
-//                    if (checkLembrarSenha.isChecked()) {
-//                        SharedPreferences.Editor editor = sharedPreferences.edit();
-//                        editor.putBoolean("lembrar_senha", true);
-//                        editor.apply();
-//                    }
-//
-//                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                    startActivity(intent);
-//                } else {
-//                    Toast.makeText(LoginActivity.this, "Usuário ou senha inválidos", Toast.LENGTH_LONG).show();
-//                }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }            
             }
         });
 

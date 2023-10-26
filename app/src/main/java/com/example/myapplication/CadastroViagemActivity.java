@@ -12,17 +12,13 @@ import com.example.myapplication.database.dao.ViagemDAO;
 import com.example.myapplication.database.model.ViagemModel;
 
 public class CadastroViagemActivity extends AppCompatActivity {
-    private EditText editDescricao,
-            editTotalKm,
-            editKmPorLitro,
-            editCustoMedioLitro,
-            editTotalVeiculos,
-            editAdicionarGasolina,
-            editCustoEstimadoPessoa,
+
+    private EditText editDescricao, editTotalKm, editKmPorLitro, editCustoMedioLitro, editTotalVeiculos, editAdicionarGasolina;
+    private Button btnSalvar, btnVoltar;
+    private EditText editCustoEstimadoPessoa,
             editAluguelVeiculo,
             editCustoRefeicao,
             editRefeicoesDia;
-    private Button btnSalvar, btnSair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +32,7 @@ public class CadastroViagemActivity extends AppCompatActivity {
         editTotalVeiculos = findViewById(R.id.editTotalVeiculos);
         editAdicionarGasolina = findViewById(R.id.editAdicionarGasolina);
         btnSalvar = findViewById(R.id.btnSalvar);
-        btnSair = findViewById(R.id.btnSair);
+        btnVoltar = findViewById(R.id.btnVoltar);
         editCustoEstimadoPessoa = findViewById(R.id.editCustoEstimadoPessoa);
         editAluguelVeiculo = findViewById(R.id.editAluguelVeiculo);
         editCustoRefeicao = findViewById(R.id.editCustoRefeicao);
@@ -85,7 +81,7 @@ public class CadastroViagemActivity extends AppCompatActivity {
             }
         });
 
-        btnSair.setOnClickListener(new View.OnClickListener() {
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CadastroViagemActivity.this, MainActivity.class);
