@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.example.myapplication.database.helper.DBOpenHelper;
+import com.example.myapplication.database.model.UsuarioModel;
 import com.example.myapplication.database.model.ViagemModel;
 import com.example.myapplication.database.dao.AbstrataDAO;
 
@@ -97,6 +98,25 @@ public class ViagemDAO extends AbstrataDAO {
 
             cursor.close();
 
+        } finally {
+            Close();
+        }
+
+        return lo_arl_dados;
+    }
+
+    public List<ViagemModel> SelectAllFromUsuario(int idUsuario) throws SQLException {
+        List<ViagemModel> lo_arl_dados = new ArrayList<>();
+        try {
+            Open();
+            String selection = ViagemModel.COLUNA_ID_USUARIO + " = ? ";
+            String[] selectionArgs = {colunas[0]};
+            Cursor cursor = db.query(ViagemModel.TABELA_NOME, colunas, selection, null, null, null, null);
+            cursor.moveToFirst();
+
+            while (cursor.moveToNext()) {
+                lo_arl_dados.add(CursorToStructure(cursor));
+            }
         } finally {
             Close();
         }
