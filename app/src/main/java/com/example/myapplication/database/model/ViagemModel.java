@@ -24,6 +24,7 @@ public class ViagemModel {
     private int totalQuartos;
     private double totalHospedagem;
     private int adicionarHospedagem;
+    private int idUsuario;
 
     public static final String
             COLUNA_ID = "_id",
@@ -46,7 +47,9 @@ public class ViagemModel {
             COLUNA_TOTAL_NOITES = "total_noites",
             COLUNA_TOTAL_QUARTOS = "total_quartos",
             COLUNA_TOTAL_HOSPEDAGEM = "total_hospedagem",
-            COLUNA_ADICIONAR_HOSPEDAGEM = "adicionar_hospedagem";
+            COLUNA_ADICIONAR_HOSPEDAGEM = "adicionar_hospedagem",
+
+            COLUNA_ID_USUARIO = "id_usuario";
 
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABELA_NOME + " (" +
@@ -70,7 +73,8 @@ public class ViagemModel {
                     COLUNA_TOTAL_NOITES + " INTEGER, " +
                     COLUNA_TOTAL_QUARTOS + " INTEGER, " +
                     COLUNA_ADICIONAR_HOSPEDAGEM + " INTEGER, " +
-                    COLUNA_TOTAL_HOSPEDAGEM + " REAL);";
+                    COLUNA_TOTAL_HOSPEDAGEM + " REAL, " +
+                    COLUNA_ID_USUARIO + " INTEGER);";
 
 
     public static final String DROP_TABLE = "drop table if exists " + TABELA_NOME + ";";
@@ -241,5 +245,13 @@ public class ViagemModel {
 
     public void setAdicionarHospedagem(int adicionarHospedagem) {
         this.adicionarHospedagem = adicionarHospedagem;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

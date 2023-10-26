@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.example.myapplication.database.helper.DBOpenHelper;
+import com.example.myapplication.database.model.UsuarioModel;
 import com.example.myapplication.database.model.ViagemModel;
 import com.example.myapplication.database.dao.AbstrataDAO;
 
@@ -35,7 +36,8 @@ public class ViagemDAO extends AbstrataDAO {
             ViagemModel.COLUNA_TOTAL_NOITES,
             ViagemModel.COLUNA_TOTAL_QUARTOS,
             ViagemModel.COLUNA_TOTAL_HOSPEDAGEM,
-            ViagemModel.COLUNA_ADICIONAR_HOSPEDAGEM
+            ViagemModel.COLUNA_ADICIONAR_HOSPEDAGEM,
+            ViagemModel.COLUNA_ID_USUARIO
     };
 
     public ViagemDAO(Context context) {
@@ -69,6 +71,7 @@ public class ViagemDAO extends AbstrataDAO {
             values.put(ViagemModel.COLUNA_TOTAL_QUARTOS, model.getTotalQuartos());
             values.put(ViagemModel.COLUNA_TOTAL_HOSPEDAGEM, model.getTotalHospedagem());
             values.put(ViagemModel.COLUNA_ADICIONAR_HOSPEDAGEM, model.getAdicionarHospedagem());
+            values.put(ViagemModel.COLUNA_ID_USUARIO, model.getIdUsuario());
 
             rowAffect = db.insert(ViagemModel.TABELA_NOME, null, values);
 
@@ -95,6 +98,25 @@ public class ViagemDAO extends AbstrataDAO {
 
             cursor.close();
 
+        } finally {
+            Close();
+        }
+
+        return lo_arl_dados;
+    }
+
+    public List<ViagemModel> SelectAllFromUsuario(int idUsuario) throws SQLException {
+        List<ViagemModel> lo_arl_dados = new ArrayList<>();
+        try {
+            Open();
+            String selection = ViagemModel.COLUNA_ID_USUARIO + " = ? ";
+            String[] selectionArgs = {colunas[0]};
+            Cursor cursor = db.query(ViagemModel.TABELA_NOME, colunas, selection, null, null, null, null);
+            cursor.moveToFirst();
+
+            while (cursor.moveToNext()) {
+                lo_arl_dados.add(CursorToStructure(cursor));
+            }
         } finally {
             Close();
         }
@@ -137,6 +159,7 @@ public class ViagemDAO extends AbstrataDAO {
         lo_structure.setTotalNoites(ao_cursor.getInt(17)); // COLUNA_TOTAL_NOITES
         lo_structure.setTotalQuartos(ao_cursor.getInt(18)); // COLUNA_TOTAL_QUARTOS
         lo_structure.setTotalHospedagem(ao_cursor.getDouble(19));
+        lo_structure.setAdicionarHospedagem(ao_cursor.getInt(20)); // COLUNA_ADICIONAR_HOSPEDAGEM
 
         return lo_structure;
     }

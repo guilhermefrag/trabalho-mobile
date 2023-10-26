@@ -1,9 +1,12 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -14,7 +17,9 @@ import com.example.myapplication.database.model.ViagemModel;
 
 public class CadastroViagemActivity extends AppCompatActivity {
 
-    private EditText editDescricao, editTotalKm, editKmPorLitro, editCustoMedioLitro, editTotalVeiculos, editAdicionarGasolina;
+    private EditText editDescricao, editTotalKm, editKmPorLitro, editCustoMedioLitro, editTotalVeiculos;
+
+    private CheckBox checkAdicionarGasolina;
     private Button btnSalvar, btnVoltar;
     private EditText editCustoEstimadoPessoa,
             editAluguelVeiculo,
@@ -31,7 +36,7 @@ public class CadastroViagemActivity extends AppCompatActivity {
         editKmPorLitro = findViewById(R.id.editKmPorLitro);
         editCustoMedioLitro = findViewById(R.id.editCustoMedioLitro);
         editTotalVeiculos = findViewById(R.id.editTotalVeiculos);
-        editAdicionarGasolina = findViewById(R.id.editAdicionarGasolina);
+        checkAdicionarGasolina = findViewById(R.id.checkAdicionarGasolina);
         btnSalvar = findViewById(R.id.btnSalvar);
         btnVoltar = findViewById(R.id.btnVoltar);
         editCustoEstimadoPessoa = findViewById(R.id.editCustoEstimadoPessoa);
@@ -52,6 +57,8 @@ public class CadastroViagemActivity extends AppCompatActivity {
                 double custoEstimadoPessoa = Double.parseDouble(editCustoEstimadoPessoa.getText().toString());
                 double aluguelVeiculo = Double.parseDouble(editAluguelVeiculo.getText().toString());
                 double custoRefeicao = Double.parseDouble(editCustoRefeicao.getText().toString());
+                SharedPreferences sharedPreferences = getSharedPreferences("MinhasPreferencias", Context.MODE_PRIVATE);
+                int idUsuario = sharedPreferences.getInt("id_usuario", -1);
 
                 ViagemModel viagem = new ViagemModel();
 
@@ -71,6 +78,7 @@ public class CadastroViagemActivity extends AppCompatActivity {
                 viagem.setAdicionarHospedagem(1);
                 viagem.setAdicionarRefeicoes(1);
                 viagem.setAdicionarTarifaAerea(1);
+                viagem.setIdUsuario(idUsuario);
 
                 ViagemDAO viagemDAO = new ViagemDAO(CadastroViagemActivity.this);
 
