@@ -35,7 +35,8 @@ public class ViagemDAO extends AbstrataDAO {
             ViagemModel.COLUNA_TOTAL_NOITES,
             ViagemModel.COLUNA_TOTAL_QUARTOS,
             ViagemModel.COLUNA_TOTAL_HOSPEDAGEM,
-            ViagemModel.COLUNA_ADICIONAR_HOSPEDAGEM
+            ViagemModel.COLUNA_ADICIONAR_HOSPEDAGEM,
+            ViagemModel.COLUNA_ID_USUARIO
     };
 
     public ViagemDAO(Context context) {
@@ -69,6 +70,7 @@ public class ViagemDAO extends AbstrataDAO {
             values.put(ViagemModel.COLUNA_TOTAL_QUARTOS, model.getTotalQuartos());
             values.put(ViagemModel.COLUNA_TOTAL_HOSPEDAGEM, model.getTotalHospedagem());
             values.put(ViagemModel.COLUNA_ADICIONAR_HOSPEDAGEM, model.getAdicionarHospedagem());
+            values.put(ViagemModel.COLUNA_ID_USUARIO, model.getIdUsuario());
 
             rowAffect = db.insert(ViagemModel.TABELA_NOME, null, values);
 
@@ -137,6 +139,7 @@ public class ViagemDAO extends AbstrataDAO {
         lo_structure.setTotalNoites(ao_cursor.getInt(17)); // COLUNA_TOTAL_NOITES
         lo_structure.setTotalQuartos(ao_cursor.getInt(18)); // COLUNA_TOTAL_QUARTOS
         lo_structure.setTotalHospedagem(ao_cursor.getDouble(19));
+        lo_structure.setAdicionarHospedagem(ao_cursor.getInt(20)); // COLUNA_ADICIONAR_HOSPEDAGEM
 
         return lo_structure;
     }

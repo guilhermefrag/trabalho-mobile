@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
                 editor.putBoolean("lembrar_senha", false);
                 editor.apply();
 
+                editor.remove("id_usuario");
+                editor.apply();
+
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
