@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,7 +17,9 @@ import com.example.myapplication.database.model.ViagemModel;
 
 public class CadastroViagemActivity extends AppCompatActivity {
 
-    private EditText editDescricao, editTotalKm, editKmPorLitro, editCustoMedioLitro, editTotalVeiculos, editAdicionarGasolina;
+    private EditText editDescricao, editTotalKm, editKmPorLitro, editCustoMedioLitro, editTotalVeiculos;
+
+    private CheckBox checkAdicionarGasolina;
     private Button btnSalvar, btnVoltar;
     private EditText editCustoEstimadoPessoa,
             editAluguelVeiculo,
@@ -33,7 +36,7 @@ public class CadastroViagemActivity extends AppCompatActivity {
         editKmPorLitro = findViewById(R.id.editKmPorLitro);
         editCustoMedioLitro = findViewById(R.id.editCustoMedioLitro);
         editTotalVeiculos = findViewById(R.id.editTotalVeiculos);
-        editAdicionarGasolina = findViewById(R.id.editAdicionarGasolina);
+        checkAdicionarGasolina = findViewById(R.id.checkAdicionarGasolina);
         btnSalvar = findViewById(R.id.btnSalvar);
         btnVoltar = findViewById(R.id.btnVoltar);
         editCustoEstimadoPessoa = findViewById(R.id.editCustoEstimadoPessoa);
