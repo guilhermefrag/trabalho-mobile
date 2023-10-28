@@ -110,9 +110,8 @@ public class ViagemDAO extends AbstrataDAO {
         try {
             Open();
             String selection = ViagemModel.COLUNA_ID_USUARIO + " = ? ";
-            String[] selectionArgs = {colunas[0]};
-            Cursor cursor = db.query(ViagemModel.TABELA_NOME, colunas, selection, null, null, null, null);
-            cursor.moveToFirst();
+            String[] selectionArgs = {String.valueOf(idUsuario)};
+            Cursor cursor = db.query(ViagemModel.TABELA_NOME, colunas, selection, selectionArgs, null, null, null);
 
             while (cursor.moveToNext()) {
                 lo_arl_dados.add(CursorToStructure(cursor));
@@ -122,6 +121,24 @@ public class ViagemDAO extends AbstrataDAO {
         }
 
         return lo_arl_dados;
+    }
+
+    public List<ViagemModel> retrieve(String idViagem) throws SQLException {
+        List<ViagemModel> viagem = new ArrayList<>();
+        try {
+            Open();
+            String selection = ViagemModel.COLUNA_ID + " = ? ";
+            String[] selectionArgs = {String.valueOf(idViagem)};
+            Cursor cursor = db.query(ViagemModel.TABELA_NOME, colunas, selection, selectionArgs, null, null, null);
+
+            while (cursor.moveToNext()) {
+                viagem.add(CursorToStructure(cursor));
+            }
+        } finally {
+            Close();
+        }
+
+        return viagem;
     }
 
     public void Delete(final long id) throws SQLException {

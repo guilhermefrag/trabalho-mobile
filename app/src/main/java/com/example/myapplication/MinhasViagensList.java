@@ -1,4 +1,4 @@
-package com.example.myapplication.adapter;
+package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,19 +12,22 @@ import android.widget.TextView;
 
 import com.example.myapplication.CadastroViagemActivity;
 import com.example.myapplication.ListaEntretenimento;
-import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.database.dao.ViagemDAO;
+import com.example.myapplication.database.model.ViagemModel;
 
+import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 
 public class MinhasViagensList extends BaseAdapter {
-    private List<String> itemList;
+    private List<String[]> itemList;
     private Context context;
-    private Button button2;
-    private ImageButton button1;
-    private TextView textView;
+    private Button btnAdicionarEntretenimento;
+    private ImageButton btnEditar;
+    private TextView descricao, idObject;
 
-    public MinhasViagensList(Context context, List<String> itemList) {
+    public MinhasViagensList(Context context, List<String[]> itemList) {
         this.itemList = itemList;
         this.context = context;
     }
@@ -50,26 +53,41 @@ public class MinhasViagensList extends BaseAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.item_lista_minha_viagem, viewGroup, false);
         }
 
-        textView = view.findViewById(R.id.textView);
-        button1 = view.findViewById(R.id.button1);
-        button2 = view.findViewById(R.id.button2);
+        descricao = view.findViewById(R.id.descricao);
+        idObject = view.findViewById(R.id.idObject);
+        btnEditar = view.findViewById(R.id.btnEditar);
+        btnAdicionarEntretenimento = view.findViewById(R.id.btnAdicionarEntretenimento);
 
-        if (textView != null) {
-            String item = itemList.get(posicao);
-            textView.setText(item);
+        if (descricao != null) {
+            String item = itemList.get(posicao)[0];
+            String id = itemList.get(posicao)[1];
+            descricao.setText(item);
+            idObject.setText(id);
+
         }
-        if(button1 != null ) {
-            button1.setOnClickListener(new View.OnClickListener() {
+        if(btnEditar != null ) {
+            btnEditar.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
+                    List<ViagemModel> viagem;
+
+                    {
+                        try {
+                            viagem = new ViagemDAO(context).retrieve(idObject.getText().toString());
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
                     Intent intent = new Intent(context, CadastroViagemActivity.class);
+                    intent.putExtra("viagemData", (Serializable) viagem.get(0));
                     context.startActivity(intent);
                 }
             });
         }
 
-        if(button2 != null ) {
-            button2.setOnClickListener(new View.OnClickListener() {
+        if(btnAdicionarEntretenimento != null ) {
+            btnAdicionarEntretenimento.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context, ListaEntretenimento.class);
