@@ -25,7 +25,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".CadastroActivity" />
         <activity android:name=".CadastroViagemActivity" />
-        <activity android:name=".ListaViagens" />
+        <activity android:name=".UpdateCadastroViagemActivity" />
         <activity android:name=".MinhasViagens" />
         <activity android:name=".MinhasViagensList" />
         <activity android:name=".BancoActivity" />

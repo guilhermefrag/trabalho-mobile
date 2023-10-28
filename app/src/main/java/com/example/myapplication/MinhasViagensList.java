@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ public class MinhasViagensList extends BaseAdapter {
     private List<String[]> itemList;
     private Context context;
     private Button btnAdicionarEntretenimento;
-    private ImageButton btnEditar;
+    private ImageButton btnEditar, btnExcluir;
     private TextView descricao, idObject;
 
     public MinhasViagensList(Context context, List<String[]> itemList) {
@@ -56,35 +57,41 @@ public class MinhasViagensList extends BaseAdapter {
         descricao = view.findViewById(R.id.descricao);
         idObject = view.findViewById(R.id.idObject);
         btnEditar = view.findViewById(R.id.btnEditar);
+        btnExcluir = view.findViewById(R.id.btnExcluir);
         btnAdicionarEntretenimento = view.findViewById(R.id.btnAdicionarEntretenimento);
+
 
         if (descricao != null) {
             String item = itemList.get(posicao)[0];
             String id = itemList.get(posicao)[1];
             descricao.setText(item);
-            idObject.setText(id);
-
+            btnEditar.setTag(id);
+            btnExcluir.setTag(id);
         }
-        if(btnEditar != null ) {
-            btnEditar.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View view) {
-                    List<ViagemModel> viagem;
+        btnEditar.setOnClickListener(new View.OnClickListener() {
 
-                    {
-                        try {
-                            viagem = new ViagemDAO(context).retrieve(idObject.getText().toString());
-                        } catch (SQLException e) {
-                            throw new RuntimeException(e);
-                        }
+            @Override
+            public void onClick(View view) {
+                List<ViagemModel> viagem;
+                String viagemId = (String) view.getTag();
+                {
+                    try {
+                        viagem = new ViagemDAO(context).retrieve(viagemId);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
                     }
-                    Intent intent = new Intent(context, CadastroViagemActivity.class);
-                    intent.putExtra("viagemData", (Serializable) viagem.get(0));
-                    context.startActivity(intent);
                 }
-            });
-        }
+                SharedPreferences sharedPreferences = context.getSharedPreferences("MinhasPreferencias", Context.MODE_PRIVATE);
+                Intent intent = new Intent(context, UpdateCadastroViagemActivity.class);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putLong("viagem_data", viagem.get(0).getId());
+
+                editor.apply();
+                context.startActivity(intent);
+            }
+        });
 
         if(btnAdicionarEntretenimento != null ) {
             btnAdicionarEntretenimento.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +102,21 @@ public class MinhasViagensList extends BaseAdapter {
                 }
             });
         }
+
+        btnExcluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String viagemId = (String) view.getTag();
+                try {
+                    new ViagemDAO(context).Delete(Long.parseLong(viagemId));
+                    // Update your itemList by removing the deleted item from the list
+                    itemList.remove(posicao);
+                    notifyDataSetChanged(); // Notify the adapter that the data set has changed
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
         return view;
 

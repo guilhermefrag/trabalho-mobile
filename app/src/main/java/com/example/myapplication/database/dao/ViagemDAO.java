@@ -44,6 +44,14 @@ public class ViagemDAO extends AbstrataDAO {
         db_helper = new DBOpenHelper(context);
     }
 
+    public boolean integerToBoolean(int value) {
+        return value == 1;
+    }
+
+    public int booleanToInteger(boolean value) {
+        return value ? 1 : 0;
+    }
+
     public long Insert(ViagemModel model) throws SQLException {
         long rowAffect = 0;
 
@@ -139,6 +147,47 @@ public class ViagemDAO extends AbstrataDAO {
         }
 
         return viagem;
+    }
+
+    public int Update(ViagemModel model) throws SQLException {
+        int rowsAffected = 0;
+
+        try {
+            Open();
+
+            ContentValues values = new ContentValues();
+            values.put(ViagemModel.COLUNA_DESCRICAO, model.getDescricao());
+            values.put(ViagemModel.COLUNA_TOTALKM, model.getTotalKm());
+            values.put(ViagemModel.COLUNA_KMLITRO, model.getKmPorLitro());
+            values.put(ViagemModel.COLUNA_CUSTO_MEDIO_LITRO, model.getCustoMedioLitro());
+            values.put(ViagemModel.COLUNA_TOTAL_VEICULOS, model.getTotalVeiculos());
+            values.put(ViagemModel.COLUNA_TOAL_GASONLINA, model.getTotalGasolina());
+            values.put(ViagemModel.COLUNA_ADICIONAR_GASOLINA, model.getAdicionarGasolina());
+            values.put(ViagemModel.COLUNA_CUSTO_TARIFA_PESSOA, model.getCustoTarifaPessoa());
+            values.put(ViagemModel.COLUNA_ALUGUEL_VEICULO, model.getAluguelVeiculo());
+            values.put(ViagemModel.COLUNA_TOTAL_TARIFA_AEREA, model.getTotalTarifaAerea());
+            values.put(ViagemModel.COLUNA_ADICIONAR_TARIFA, model.getAdicionarTarifaAerea());
+            values.put(ViagemModel.COLUNA_CUSTO_REFEICAO, model.getCustoRefeicao());
+            values.put(ViagemModel.COLUNA_REFEICOES_DIA, model.getRefeicoesDia());
+            values.put(ViagemModel.COLUNA_TOTAL_REFEICOES, model.getTotalRefeicoes());
+            values.put(ViagemModel.COLUNA_ADICIONAR_REFEICOES, model.getAdicionarRefeicoes());
+            values.put(ViagemModel.COLUNA_CUSTO_NOITE, model.getCustoNoite());
+            values.put(ViagemModel.COLUNA_TOTAL_NOITES, model.getTotalNoites());
+            values.put(ViagemModel.COLUNA_TOTAL_QUARTOS, model.getTotalQuartos());
+            values.put(ViagemModel.COLUNA_TOTAL_HOSPEDAGEM, model.getTotalHospedagem());
+            values.put(ViagemModel.COLUNA_ADICIONAR_HOSPEDAGEM, model.getAdicionarHospedagem());
+            values.put(ViagemModel.COLUNA_ID_USUARIO, model.getIdUsuario());
+
+            String whereClause = ViagemModel.COLUNA_ID + " = ?";
+            String[] whereArgs = {String.valueOf(model.getId())};
+
+            rowsAffected = db.update(ViagemModel.TABELA_NOME, values, whereClause, whereArgs);
+
+        } finally {
+            Close();
+        }
+
+        return rowsAffected;
     }
 
     public void Delete(final long id) throws SQLException {
