@@ -25,7 +25,7 @@ public class MinhasViagensList extends BaseAdapter {
     private List<String[]> itemList;
     private Context context;
     private Button btnAdicionarEntretenimento;
-    private ImageButton btnEditar, btnExcluir;
+    private ImageButton btnEditar, btnExcluir, btnVisualizar;
     private TextView descricao, idObject;
 
     public MinhasViagensList(Context context, List<String[]> itemList) {
@@ -50,7 +50,7 @@ public class MinhasViagensList extends BaseAdapter {
 
     @Override
     public View getView(int posicao, View view, ViewGroup viewGroup) {
-        if(view == null) {
+        if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.item_lista_minha_viagem, viewGroup, false);
         }
 
@@ -59,7 +59,7 @@ public class MinhasViagensList extends BaseAdapter {
         btnEditar = view.findViewById(R.id.btnEditar);
         btnExcluir = view.findViewById(R.id.btnExcluir);
         btnAdicionarEntretenimento = view.findViewById(R.id.btnAdicionarEntretenimento);
-
+        btnVisualizar = view.findViewById(R.id.btnVisualizar);
 
         if (descricao != null) {
             String item = itemList.get(posicao)[0];
@@ -68,6 +68,7 @@ public class MinhasViagensList extends BaseAdapter {
             btnEditar.setTag(id);
             btnExcluir.setTag(id);
             btnAdicionarEntretenimento.setTag(id);
+            btnVisualizar.setTag(id);
         }
 
         btnEditar.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +95,28 @@ public class MinhasViagensList extends BaseAdapter {
             }
         });
 
+        btnVisualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<ViagemModel> viagem;
+                String viagemId = (String) view.getTag();
+                {
+                    try {
+                        viagem = new ViagemDAO(context).retrieve(viagemId);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                SharedPreferences sharedPreferences = context.getSharedPreferences("MinhasPreferencias", Context.MODE_PRIVATE);
+                Intent intent = new Intent(context, RelatorioActivity.class);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putLong("viagem_data", viagem.get(0).getId());
+
+                editor.apply();
+                context.startActivity(intent);
+            }
+        });
 
         btnExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,27 +134,27 @@ public class MinhasViagensList extends BaseAdapter {
 
         btnAdicionarEntretenimento.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                try{
-                List<ViagemModel> viagem;
-                String viagemId = (String) view.getTag();
-                {
-                    try {
-                        viagem = new ViagemDAO(context).retrieve(viagemId);
-                    } catch (SQLException e) {
-                        throw new RuntimeException(e);
+            public void onClick(View view) {
+                try {
+                    List<ViagemModel> viagem;
+                    String viagemId = (String) view.getTag();
+                    {
+                        try {
+                            viagem = new ViagemDAO(context).retrieve(viagemId);
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
-                }
-                SharedPreferences sharedPreferences = context.getSharedPreferences("MinhasPreferencias", Context.MODE_PRIVATE);
-                Intent intent = new Intent(context, ListaEntretenimento.class);
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("MinhasPreferencias", Context.MODE_PRIVATE);
+                    Intent intent = new Intent(context, ListaEntretenimento.class);
 
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putLong("viagem_data", viagem.get(0).getId());
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putLong("viagem_data", viagem.get(0).getId());
 
-                editor.apply();
-                context.startActivity(intent);
-            }catch (Exception e){
-                throw new RuntimeException(e);
+                    editor.apply();
+                    context.startActivity(intent);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
             }
         });

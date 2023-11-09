@@ -2,8 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="@color/blue"
+    android:gravity="center"
     android:orientation="vertical">
 
     <LinearLayout
@@ -22,12 +22,12 @@
                 android:id="@+id/btnVoltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="17dp"
-                android:textStyle="bold"
-                android:layout_marginBottom="30dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginBottom="30dp"
                 android:backgroundTint="@color/orange"
-                android:text="Voltar" />
+                android:text="Voltar"
+                android:textSize="17dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -37,248 +37,270 @@
             android:text="CADASTRO DE VIAGEM"
             android:textAlignment="center"
             android:textColor="@color/orange"
-            android:textSize="30dp"/>
+            android:textSize="30dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/editDescricao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:backgroundTint="@color/orange"
                 android:hint="Descrição da viagem"
                 android:inputType="text"
-                android:backgroundTint="@color/orange"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/orange"
-                android:layout_margin="20dp"/>
+                android:textColorHint="@color/orange" />
+
+            <EditText
+                android:id="@+id/editTotalViajantes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:backgroundTint="@color/orange"
+                android:hint="Total viajantes"
+                android:inputType="number"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange" />
+
+            <EditText
+                android:id="@+id/editDuracaoDias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:backgroundTint="@color/orange"
+                android:hint="Duração em dias"
+                android:inputType="number"
+                android:textColor="@color/orange"
+                android:textColorHint="@color/orange" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_marginBottom="20dp">
+            android:paddingRight="20dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:text="GASOLINA"
                 android:textAlignment="center"
                 android:textColor="@color/orange"
-                android:paddingTop="10dp"
-                android:textSize="30dp"/>
+                android:textSize="30dp" />
 
             <EditText
                 android:id="@+id/editTotalKm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/orange"
                 android:hint="Total de Km"
                 android:inputType="numberDecimal"
-                android:backgroundTint="@color/orange"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/orange"
-                android:layout_marginBottom="10dp"/>
+                android:textColorHint="@color/orange" />
 
             <EditText
                 android:id="@+id/editKmPorLitro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/orange"
                 android:hint="Km por litro"
                 android:inputType="numberDecimal"
-                android:backgroundTint="@color/orange"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/orange"
-                android:layout_marginBottom="10dp"/>
+                android:textColorHint="@color/orange" />
 
             <EditText
                 android:id="@+id/editCustoMedioLitro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/orange"
                 android:hint="Custo médio do litro"
                 android:inputType="numberDecimal"
-                android:backgroundTint="@color/orange"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/orange"
-                android:layout_marginBottom="10dp"/>
+                android:textColorHint="@color/orange" />
 
             <EditText
                 android:id="@+id/editTotalVeiculos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/orange"
                 android:hint="Total de veículos"
                 android:inputType="number"
-                android:backgroundTint="@color/orange"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/orange"/>
+                android:textColorHint="@color/orange" />
 
             <CheckBox
                 android:id="@+id/checkAdicionarGasolina"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Adicionar gasolina"
                 android:textColor="@color/orange"
-                android:textStyle="bold"
-                android:text="Adicionar gasolina" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_marginBottom="20dp">
+            android:paddingRight="20dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:text="TARIFA AÉREA"
                 android:textAlignment="center"
                 android:textColor="@color/orange"
-                android:paddingTop="10dp"
-                android:textSize="30dp"/>
+                android:textSize="30dp" />
 
             <EditText
                 android:id="@+id/editCustoEstimadoPessoa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/orange"
                 android:hint="Custo estimado por pessoa"
                 android:inputType="numberDecimal"
-                android:backgroundTint="@color/orange"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/orange"
-                android:layout_marginBottom="10dp"/>
+                android:textColorHint="@color/orange" />
 
             <EditText
                 android:id="@+id/editAluguelVeiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/orange"
                 android:hint="Aluguel de veículo"
                 android:inputType="numberDecimal"
-                android:backgroundTint="@color/orange"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/orange"/>
+                android:textColorHint="@color/orange" />
 
             <CheckBox
                 android:id="@+id/checkAdicionarTarifa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Adicionar tarifa"
                 android:textColor="@color/orange"
-                android:textStyle="bold"
-                android:text="Adicionar tarifa" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_marginBottom="20dp">
+            android:paddingRight="20dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:text="REFEIÇÕES"
                 android:textAlignment="center"
                 android:textColor="@color/orange"
-                android:paddingTop="10dp"
-                android:textSize="30dp"/>
+                android:textSize="30dp" />
 
             <EditText
                 android:id="@+id/editCustoRefeicao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/orange"
                 android:hint="Custo estimado por refeição"
                 android:inputType="numberDecimal"
-                android:backgroundTint="@color/orange"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/orange"
-                android:layout_marginBottom="10dp"/>
+                android:textColorHint="@color/orange" />
 
             <EditText
                 android:id="@+id/editRefeicoesDia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/orange"
                 android:hint="Refeições por dia"
                 android:inputType="numberDecimal"
-                android:backgroundTint="@color/orange"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/orange"/>
+                android:textColorHint="@color/orange" />
 
             <CheckBox
                 android:id="@+id/checkAdicionarRefeicao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Adicionar refeição"
                 android:textColor="@color/orange"
-                android:textStyle="bold"
-                android:text="Adicionar refeição" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_marginBottom="20dp"
-            >
+            android:paddingRight="20dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="10dp"
                 android:text="HOSPEDAGEM"
                 android:textAlignment="center"
                 android:textColor="@color/orange"
-                android:paddingTop="10dp"
-                android:textSize="30dp"/>
+                android:textSize="30dp" />
 
             <EditText
                 android:id="@+id/editCustoPorNoite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/orange"
                 android:hint="Custo médio (por noite)"
                 android:inputType="numberDecimal"
-                android:backgroundTint="@color/orange"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/orange"
-                android:layout_marginBottom="10dp"/>
+                android:textColorHint="@color/orange" />
 
             <EditText
                 android:id="@+id/editTotalNoites"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/orange"
                 android:hint="Total de noites"
                 android:inputType="numberDecimal"
-                android:backgroundTint="@color/orange"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/orange"
-                android:layout_marginBottom="10dp"/>
+                android:textColorHint="@color/orange" />
 
             <EditText
                 android:id="@+id/editTotalQuartos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/orange"
                 android:hint="Total de quartos"
                 android:inputType="numberDecimal"
-                android:backgroundTint="@color/orange"
                 android:textColor="@color/orange"
-                android:textColorHint="@color/orange"/>
+                android:textColorHint="@color/orange" />
 
             <CheckBox
                 android:id="@+id/checkAdicionarHospedagem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Adicionar hospedagem"
                 android:textColor="@color/orange"
-                android:textStyle="bold"
-                android:text="Adicionar hospedagem" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -288,8 +310,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="50"
             android:backgroundTint="@color/orange"
             android:text="REGISTRAR" />

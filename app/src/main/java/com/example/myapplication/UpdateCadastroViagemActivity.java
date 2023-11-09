@@ -32,9 +32,9 @@ public class UpdateCadastroViagemActivity extends AppCompatActivity {
     private EditText editCustoEstimadoPessoa,
             editAluguelVeiculo,
             editCustoRefeicao,
-            editRefeicoesDia;
-
-
+            editRefeicoesDia,
+            editTotalViajantes,
+            editDuracaoDias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +74,10 @@ public class UpdateCadastroViagemActivity extends AppCompatActivity {
         checkAdicionarTarifa = findViewById(R.id.checkAdicionarTarifa);
         checkAdicionarRefeicao = findViewById(R.id.checkAdicionarRefeicao);
         checkAdicionarHospedagem = findViewById(R.id.checkAdicionarHospedagem);
+        editTotalViajantes = findViewById(R.id.editTotalViajantes);
+        editDuracaoDias = findViewById(R.id.editDuracaoDias);
 
-
-        editDescricao.setText(""+viagem.getDescricao());
+        editDescricao.setText("" + viagem.getDescricao());
         editTotalKm.setText("" + viagem.getTotalKm());
         editKmPorLitro.setText("" + viagem.getKmPorLitro());
         editCustoMedioLitro.setText("" + viagem.getCustoMedioLitro());
@@ -88,6 +89,8 @@ public class UpdateCadastroViagemActivity extends AppCompatActivity {
         editTotalNoites.setText("" + viagem.getTotalNoites());
         editCustoNoite.setText("" + viagem.getCustoNoite());
         editTotalQuartos.setText("" + viagem.getTotalQuartos());
+        editTotalViajantes.setText("" + viagem.getTotalViajantes());
+        editDuracaoDias.setText("" + viagem.getDuracaoDias());
         checkAdicionarGasolina.setChecked(viagemDAO.integerToBoolean(viagem.getAdicionarGasolina()));
         checkAdicionarTarifa.setChecked(viagemDAO.integerToBoolean(viagem.getAdicionarTarifaAerea()));
         checkAdicionarRefeicao.setChecked(viagemDAO.integerToBoolean(viagem.getAdicionarRefeicoes()));
@@ -106,6 +109,9 @@ public class UpdateCadastroViagemActivity extends AppCompatActivity {
                 double custoEstimadoPessoa = Double.parseDouble(editCustoEstimadoPessoa.getText().toString());
                 double aluguelVeiculo = Double.parseDouble(editAluguelVeiculo.getText().toString());
                 double custoRefeicao = Double.parseDouble(editCustoRefeicao.getText().toString());
+                int totalViajantes = Integer.parseInt(editTotalViajantes.getText().toString());
+                int duracaoDias = Integer.parseInt(editDuracaoDias.getText().toString());
+
 
                 SharedPreferences sharedPreferences = getSharedPreferences("MinhasPreferencias", Context.MODE_PRIVATE);
                 int idUsuario = sharedPreferences.getInt("id_usuario", -1);
@@ -126,6 +132,11 @@ public class UpdateCadastroViagemActivity extends AppCompatActivity {
                 viagemUpdate.setCustoRefeicao(custoRefeicao);
                 viagemUpdate.setRefeicoesDia(Integer.parseInt(editRefeicoesDia.getText().toString()));
                 viagemUpdate.setIdUsuario(idUsuario);
+                viagemUpdate.setTotalViajantes(totalViajantes);
+                viagemUpdate.setDuracaoDias(duracaoDias);
+                viagemUpdate.setCustoNoite(Double.parseDouble(editCustoNoite.getText().toString()));
+                viagemUpdate.setTotalNoites(Integer.parseInt(editTotalNoites.getText().toString()));
+                viagemUpdate.setTotalQuartos(Integer.parseInt(editTotalQuartos.getText().toString()));
 
                 try {
                     viagemDAO.Update(viagemUpdate);
@@ -136,7 +147,7 @@ public class UpdateCadastroViagemActivity extends AppCompatActivity {
                     editor.apply();
                     Toast.makeText(UpdateCadastroViagemActivity.this, "Atualizacao de Viagem realizado com sucesso", Toast.LENGTH_LONG).show();
                     startActivity(intent);
-                }catch (Exception e) {
+                } catch (Exception e) {
                     Toast.makeText(UpdateCadastroViagemActivity.this, "" + e.toString(), Toast.LENGTH_LONG).show();
                 }
             }
