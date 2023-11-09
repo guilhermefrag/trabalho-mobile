@@ -37,7 +37,9 @@ public class ViagemDAO extends AbstrataDAO {
             ViagemModel.COLUNA_TOTAL_QUARTOS,
             ViagemModel.COLUNA_TOTAL_HOSPEDAGEM,
             ViagemModel.COLUNA_ADICIONAR_HOSPEDAGEM,
-            ViagemModel.COLUNA_ID_USUARIO
+            ViagemModel.COLUNA_ID_USUARIO,
+            ViagemModel.COLUNA_TOTAL_VIAJANTES,
+            ViagemModel.COLUNA_DURACAO_DIAS
     };
 
     public ViagemDAO(Context context) {
@@ -80,6 +82,8 @@ public class ViagemDAO extends AbstrataDAO {
             values.put(ViagemModel.COLUNA_TOTAL_HOSPEDAGEM, model.getTotalHospedagem());
             values.put(ViagemModel.COLUNA_ADICIONAR_HOSPEDAGEM, model.getAdicionarHospedagem());
             values.put(ViagemModel.COLUNA_ID_USUARIO, model.getIdUsuario());
+            values.put(ViagemModel.COLUNA_TOTAL_VIAJANTES, model.getTotalViajantes());
+            values.put(ViagemModel.COLUNA_DURACAO_DIAS, model.getDuracaoDias());
 
             rowAffect = db.insert(ViagemModel.TABELA_NOME, null, values);
 
@@ -177,6 +181,8 @@ public class ViagemDAO extends AbstrataDAO {
             values.put(ViagemModel.COLUNA_TOTAL_HOSPEDAGEM, model.getTotalHospedagem());
             values.put(ViagemModel.COLUNA_ADICIONAR_HOSPEDAGEM, model.getAdicionarHospedagem());
             values.put(ViagemModel.COLUNA_ID_USUARIO, model.getIdUsuario());
+            values.put(ViagemModel.COLUNA_TOTAL_VIAJANTES, model.getTotalViajantes());
+            values.put(ViagemModel.COLUNA_DURACAO_DIAS, model.getDuracaoDias());
 
             String whereClause = ViagemModel.COLUNA_ID + " = ?";
             String[] whereArgs = {String.valueOf(model.getId())};
@@ -226,6 +232,9 @@ public class ViagemDAO extends AbstrataDAO {
         lo_structure.setTotalQuartos(ao_cursor.getInt(18)); // COLUNA_TOTAL_QUARTOS
         lo_structure.setTotalHospedagem(ao_cursor.getDouble(19));
         lo_structure.setAdicionarHospedagem(ao_cursor.getInt(20)); // COLUNA_ADICIONAR_HOSPEDAGEM
+        lo_structure.setIdUsuario(ao_cursor.getInt(21)); // COLUNA_ID_USUARIO
+        lo_structure.setTotalViajantes(ao_cursor.getInt(22)); // COLUNA_TOTAL_VIAJANTES
+        lo_structure.setDuracaoDias(ao_cursor.getInt(23)); // COLUNA_DURACAO_DIAS
 
         return lo_structure;
     }

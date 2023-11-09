@@ -25,6 +25,8 @@ public class ViagemModel {
     private double totalHospedagem;
     private int adicionarHospedagem;
     private int idUsuario;
+    private int totalViajantes;
+    private int duracaoDias;
 
     public static final String
             COLUNA_ID = "_id",
@@ -48,8 +50,9 @@ public class ViagemModel {
             COLUNA_TOTAL_QUARTOS = "total_quartos",
             COLUNA_TOTAL_HOSPEDAGEM = "total_hospedagem",
             COLUNA_ADICIONAR_HOSPEDAGEM = "adicionar_hospedagem",
-
-            COLUNA_ID_USUARIO = "id_usuario";
+            COLUNA_ID_USUARIO = "id_usuario",
+            COLUNA_TOTAL_VIAJANTES = "total_viajantes",
+            COLUNA_DURACAO_DIAS = "duracao_dias";
 
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABELA_NOME + " (" +
@@ -74,8 +77,9 @@ public class ViagemModel {
                     COLUNA_TOTAL_QUARTOS + " INTEGER, " +
                     COLUNA_ADICIONAR_HOSPEDAGEM + " INTEGER, " +
                     COLUNA_TOTAL_HOSPEDAGEM + " REAL, " +
+                    COLUNA_TOTAL_VIAJANTES + " INTEGER, " +
+                    COLUNA_DURACAO_DIAS + " INTEGER, " +
                     COLUNA_ID_USUARIO + " INTEGER);";
-
 
     public static final String DROP_TABLE = "drop table if exists " + TABELA_NOME + ";";
 
@@ -253,5 +257,21 @@ public class ViagemModel {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public int getTotalViajantes() {
+        return totalViajantes;
+    }
+
+    public void setTotalViajantes(int totalViajantes) {
+        this.totalViajantes = totalViajantes;
+    }
+
+    public int getDuracaoDias() {
+        return duracaoDias;
+    }
+
+    public void setDuracaoDias(int duracaoDias) {
+        this.duracaoDias = duracaoDias;
     }
 }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +35,9 @@ public class CadastroViagemActivity extends AppCompatActivity {
     private EditText editCustoEstimadoPessoa,
             editAluguelVeiculo,
             editCustoRefeicao,
-            editRefeicoesDia;
+            editRefeicoesDia,
+            editTotalViajantes,
+            editDuracaoDias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,8 @@ public class CadastroViagemActivity extends AppCompatActivity {
         editCustoNoite = findViewById(R.id.editCustoPorNoite);
         editTotalNoites = findViewById(R.id.editTotalNoites);
         editTotalQuartos = findViewById(R.id.editTotalQuartos);
-
+        editTotalViajantes = findViewById(R.id.editTotalViajantes);
+        editDuracaoDias = findViewById(R.id.editDuracaoDias);
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +75,8 @@ public class CadastroViagemActivity extends AppCompatActivity {
                 double kmPorLitro = Double.parseDouble(editKmPorLitro.getText().toString());
                 double custoMedioLitro = Double.parseDouble(editCustoMedioLitro.getText().toString());
                 int totalVeiculos = Integer.parseInt(editTotalVeiculos.getText().toString());
+                int totalViajantes = Integer.parseInt(editTotalViajantes.getText().toString());
+                int duracaoDias = Integer.parseInt(editDuracaoDias.getText().toString());
 
                 //adicionar os novos campos
                 double custoEstimadoPessoa = Double.parseDouble(editCustoEstimadoPessoa.getText().toString());
@@ -98,6 +104,8 @@ public class CadastroViagemActivity extends AppCompatActivity {
                 viagem.setCustoNoite(Double.parseDouble(editCustoNoite.getText().toString()));
                 viagem.setTotalNoites(Integer.parseInt(editTotalNoites.getText().toString()));
                 viagem.setTotalQuartos(Integer.parseInt(editTotalQuartos.getText().toString()));
+                viagem.setTotalViajantes(totalViajantes);
+                viagem.setDuracaoDias(duracaoDias);
 
                 //pegar da view depois
                 viagem.setIdUsuario(idUsuario);
@@ -107,7 +115,7 @@ public class CadastroViagemActivity extends AppCompatActivity {
                     Intent intent = new Intent(CadastroViagemActivity.this, MainActivity.class);
                     Toast.makeText(CadastroViagemActivity.this, "Cadastro de Viagem realizado com sucesso", Toast.LENGTH_LONG).show();
                     startActivity(intent);
-                }catch (Exception e) {
+                } catch (Exception e) {
                     Toast.makeText(CadastroViagemActivity.this, "" + e.toString(), Toast.LENGTH_LONG).show();
                 }
             }

@@ -31,7 +31,7 @@
         <activity android:name=".BancoActivity" />
         <activity android:name=".CadastroEntretenimento" />
         <activity android:name=".ListaEntretenimento" />
-
+        <activity android:name=".RelatorioActivity" />
     </application>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
