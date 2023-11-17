@@ -8,20 +8,35 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.API.Api;
+import com.example.myapplication.API.model.Resposta;
+import com.example.myapplication.API.model.UnescViagemCustoAereo;
+import com.example.myapplication.API.model.UnescViagemCustoEntretenimento;
+import com.example.myapplication.API.model.UnescViagemCustoGasolina;
+import com.example.myapplication.API.model.UnescViagemCustoHospedagem;
+import com.example.myapplication.API.model.UnescViagemCustoRefeicao;
+import com.example.myapplication.API.model.UnescViagemEnviar;
 import com.example.myapplication.database.dao.EntretenimentoDAO;
 import com.example.myapplication.database.dao.ViagemDAO;
 import com.example.myapplication.database.model.EntretenimentoModel;
 import com.example.myapplication.database.model.ViagemModel;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RelatorioActivity extends AppCompatActivity {
-    Button btnVoltarDoRel;
+    Button btnVoltarDoRel,
+            btnSincronizar;
     TextView texTotalViajantes,
             textDuracaoViagem,
             textCustoTotal,
@@ -33,6 +48,8 @@ public class RelatorioActivity extends AppCompatActivity {
             editTotalHospedagem,
             editTotalEntretenimento;
 
+    ViagemModel viagemModel;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,19 +58,22 @@ public class RelatorioActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("MinhasPreferencias", Context.MODE_PRIVATE);
 
         btnVoltarDoRel = findViewById(R.id.btnVoltarDoRel);
+        btnSincronizar = findViewById(R.id.btnSincronizar);
 
         Long viagemId = sharedPreferences.getLong("viagem_data", -1);
 
         ViagemDAO viagemDAO = new ViagemDAO(getBaseContext());
         ViagemModel viagem;
         EntretenimentoDAO entretenimentoDAO = new EntretenimentoDAO(this);
-        List<EntretenimentoModel> listaEntretenimento;
+        List<EntretenimentoModel> listaEntretenimentos;
         try {
             viagem = viagemDAO.retrieve(viagemId.toString()).get(0);
-            listaEntretenimento = entretenimentoDAO.selectAllFromViagem(Integer.parseInt(viagemId.toString()));
+            listaEntretenimentos = entretenimentoDAO.selectAllFromViagem(Integer.parseInt(viagemId.toString()));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        setViagemModel(viagemModel);
 
         texTotalViajantes = findViewById(R.id.textTotalViajantes);
         textDuracaoViagem = findViewById(R.id.textDuracaoViagem);
@@ -83,8 +103,8 @@ public class RelatorioActivity extends AppCompatActivity {
 
         double totalEntretenimento = 0;
 
-        if (!listaEntretenimento.isEmpty()) {
-            for (EntretenimentoModel entretenimentoModel : listaEntretenimento) {
+        if (!listaEntretenimentos.isEmpty()) {
+            for (EntretenimentoModel entretenimentoModel : listaEntretenimentos) {
                 totalEntretenimento += entretenimentoModel.getCusto();
             }
         }
@@ -112,5 +132,79 @@ public class RelatorioActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnSincronizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UnescViagemEnviar enviarViagem = new UnescViagemEnviar();
+                UnescViagemCustoGasolina gasolina = new UnescViagemCustoGasolina();
+                UnescViagemCustoRefeicao refeicao = new UnescViagemCustoRefeicao();
+                UnescViagemCustoAereo aereo = new UnescViagemCustoAereo();
+                UnescViagemCustoHospedagem hospedagem = new UnescViagemCustoHospedagem();
+                List<UnescViagemCustoEntretenimento> listaEntretenimento = new ArrayList<UnescViagemCustoEntretenimento>();
+
+                enviarViagem.setIdConta(120958);
+
+                gasolina.setCustoMedioLitro(viagem.getCustoMedioLitro());
+                gasolina.setCustoPorPessoa(totalGasolina > 0
+                        ? totalGasolina / viagem.getTotalViajantes()
+                        : 0);
+                gasolina.setTotalEstimadoKM(viagem.getTotalKm());
+                gasolina.setMediaKMLitro(viagem.getKmPorLitro());
+
+                refeicao.setCustoRefeicao(viagem.getCustoRefeicao());
+                refeicao.setRefeicoesDia(viagem.getRefeicoesDia());
+
+                aereo.setCustoPessoa(viagem.getCustoTarifaPessoa());
+                aereo.setCustoAluguelVeiculo(viagem.getAluguelVeiculo());
+
+                hospedagem.setTotalNoite(viagem.getTotalNoites());
+                hospedagem.setTotalQuartos(viagem.getTotalQuartos());
+                hospedagem.setCustoMedioNoite(viagem.getCustoNoite());
+
+                for (EntretenimentoModel entretenimentoModel : listaEntretenimentos) {
+                    UnescViagemCustoEntretenimento entretenimento = new UnescViagemCustoEntretenimento();
+
+                    entretenimento.setEntretenimento(entretenimentoModel.getDescricao());
+                    entretenimento.setValor(entretenimentoModel.getCusto());
+                    listaEntretenimento.add(entretenimento);
+                }
+
+                enviarViagem.setTotalViajantes(viagem.getTotalViajantes());
+                enviarViagem.setDuracaoViagem(viagem.getDuracaoDias());
+                enviarViagem.setCustoTotalViagem(custoTotalViagem);
+                enviarViagem.setCustoPorPessoa(custoPorPessoa);
+                enviarViagem.setLocal(viagem.getDescricao());
+
+                enviarViagem.setRefeicao(refeicao);
+                enviarViagem.setAereo(aereo);
+                enviarViagem.setGasolina(gasolina);
+                enviarViagem.setHospedagem(hospedagem);
+                enviarViagem.setListaEntretenimento(listaEntretenimento);
+
+                Api.postViagem(enviarViagem, new Callback<Resposta>() {
+                    @Override
+                    public void onResponse(Call<Resposta> call, Response<Resposta> response) {
+                        if(response != null && response.isSuccessful()){
+                            Resposta resposta = response.body();
+
+                            if(resposta.isSucesso()){
+                                Toast.makeText(RelatorioActivity.this, "Sucesso dos guri", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(RelatorioActivity.this, "O maior fracasso", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Resposta> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+    }
+
+    public void setViagemModel(ViagemModel viagemModel) {
+        this.viagemModel = viagemModel;
     }
 }
