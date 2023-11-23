@@ -121,9 +121,12 @@ public class RelatorioActivity extends AppCompatActivity {
         editTotalRefeicoes.setText("" + totalRefeicoes);
         editTotalHospedagem.setText("" + totalHospedagem);
         editTotalEntretenimento.setText("" + totalEntretenimento);
+
+        System.out.println("Entrou nos guri");
         btnVoltarDoRel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("Entrou não");
                 Intent intent = new Intent(RelatorioActivity.this, MinhasViagens.class);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -184,20 +187,21 @@ public class RelatorioActivity extends AppCompatActivity {
                 Api.postViagem(enviarViagem, new Callback<Resposta>() {
                     @Override
                     public void onResponse(Call<Resposta> call, Response<Resposta> response) {
-                        if(response != null && response.isSuccessful()){
+                        if (response != null && response.isSuccessful()) {
                             Resposta resposta = response.body();
 
-                            if(resposta.isSucesso()){
-                                Toast.makeText(RelatorioActivity.this, "Sucesso dos guri", Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(RelatorioActivity.this, "O maior fracasso", Toast.LENGTH_SHORT).show();
-                            }
+                            Toast.makeText(RelatorioActivity.this, "Sucesso dos guri", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Resposta> call, Throwable t) {
-
+                        System.out.println(t.getMessage());
+                        try {
+                            throw new Exception(t.getMessage());
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 });
             }
